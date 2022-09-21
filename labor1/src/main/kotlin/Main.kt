@@ -51,6 +51,14 @@ fun main(args: Array<String>) {
 
     val message = messageCoding("Kotlin", ::encode)
     println(messageCoding(message, ::decode))
+
+    println()
+
+    val numbers = listOf(1,2,3,4,5,6,7)
+    //println(numbers.map {it * 2}
+    //println(numbers)
+
+
 }
 
 
