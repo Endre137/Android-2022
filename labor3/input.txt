@@ -1,0 +1,2 @@
+4
+What is the difference between val and var in Kotlin?
