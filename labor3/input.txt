@@ -1,2 +1,67 @@
 4
+What does a data class not offer?
+2
+An auto-generated toString() method
+Automatic conversion from/to JSON
+A generated copy(...) method, to create copies of instances
+Auto-generated hashCode() and equals() methods
+2
+Does Kotlin use semicolons?
+2
+Yes
+No
+3
 What is the difference between val and var in Kotlin?
+3
+Variables declared with val can only access const members
+var is scoped to the nearest function block and val is scoped to the nearest enclosing block
+Variables declared with val are final, those with var are not
+4
+Which of these targets does Kotlin currently not support?
+3
+LLVM
+JavaScript
+.NET CLR
+JVM
+4
+What are Kotlin coroutines?
+4
+It's Kotlin's term for class methods
+That's how the automatically generated methods hashCode() and equals() in data classes are called
+These are functions which accept other functions as arguments or return them
+They provide asynchronous code without thread blocking
+4
+What is to in the exemple: val test = 33 to 42
+1
+An infix extension function creating a Pair(33,42)
+A Kotlin keyword to create a Pair(33,42)
+A syntax error
+A Kotlin keyword to create a Range from 33 to 42
+4
+What is the correct way to declare a variable of integer type in Kotlin?
+4
+int i = 42
+let i = 42
+var i: int = 42
+var i : Int = 42
+4
+Which is true for the following simple class declaration? - class Person (val: name: String)
+2
+It can be extended by other classes
+It is public
+It has a private property "name"
+It is package-private
+4
+What is the correct syntax to convert the String "42" to a Long in Kotlin?
+2
+val l: Long = Long.parseLong("42")
+val l: Long = "42".toLong()
+val l: Long = <Long>"42"
+val l: Long = (Long)"42"
+4
+What is the difference between a and b? var a: String? = "KotlinQuiz" var b: String = "KotlinQuiz"
+1
+b can never become null
+b is final and cannot be changed
+a is volatile as in Java
+a is final and cannot be changed

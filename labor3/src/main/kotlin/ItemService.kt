@@ -5,8 +5,13 @@ class ItemService (){
         val list = mutableListOf<Item>()
         var i = 0
         while(i < number){
+            var randomItem = itemRepository.randomItem()
+            if(list.contains(randomItem)){
+                continue
+            }
+            else{
             list.add(itemRepository.randomItem())
-            i++
+            i++}
         }
         return list
     }

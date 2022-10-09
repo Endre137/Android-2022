@@ -17,6 +17,7 @@ class ItemRepository {
             var j = 0
             while(j < answearsNumber) {
                 answers.add(lines[i++])
+                j++;
             }
 
             val item = Item(question,answers, correct)

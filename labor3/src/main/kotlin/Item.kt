@@ -1,10 +1,11 @@
 
 
 data class Item(
-    private val question : String,
-    private val answers : List<String>,
-    private val correct : Int
+    val question : String,
+    val answers : List<String>,
+    val correct : Int
 
 
 )
+
 
