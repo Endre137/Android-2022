@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Quizapp</string>
+    <string name="quiz">Quiz</string>
+    <string name="the_name_or_the_number_of_the_player_is">The name or the number of the player is:</string>
+</resources>
