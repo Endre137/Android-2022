@@ -1,22 +1,29 @@
 package com.example.quizapp
 
+import QuizViewModel
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.Toast
+import android.widget.*
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.Navigation
 
 
 class QuestionFragment : Fragment() {
+    val TAG= "QuestionFragment"
     private lateinit var answerOption: RadioGroup
     private lateinit var nextButton: Button
-    private val viewModel: QuizViewModel by viewModels()
+    private lateinit var questionText : TextView
+    private lateinit var radioButton1: RadioButton
+    private lateinit var radioButton2: RadioButton
+    private lateinit var radioButton3: RadioButton
+    private lateinit var radioButton4: RadioButton
+    private val viewModel: QuizViewModel by activityViewModels()
 
     companion object {
          var fragmentCounter : Int = 0
@@ -24,6 +31,7 @@ class QuestionFragment : Fragment() {
     }
 
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -45,15 +53,40 @@ class QuestionFragment : Fragment() {
     }
 
     private fun registerListeners(view: View){
+//        var answer: Int = answerOption.checkedRadioButtonId.toString().toInt()
+
         nextButton.setOnClickListener{
+
             var id: Int = answerOption.checkedRadioButtonId
+
+//            Log.i(TAG, "$id")
+//            Log.i(TAG, "${radioButton1.id}")
             if(id!=-1){
-                if(fragmentCounter < 4){
-                    fragmentCounter++
+
+                var answer = id - radioButton1.id + 1
+                if(!viewModel.isFinalQuestion()){
+//                    Log.i(TAG, "$answer")
+
+
+//                    Log.i(TAG, "${viewModel.getCorrectAnswer()}")
+                    Log.i(TAG, "${viewModel.getCorrectAnswer() } ---  $answer")
+
+                    if ((answer) == viewModel.getCorrectAnswer()){
+                        viewModel.incrementCorrectAnswers()
+
+                    }
+                    viewModel.incrementCounter()
                     Navigation.findNavController(view).navigate(R.id.action_fragment2_self)
                 }
                 else {
-                    fragmentCounter = 0
+
+                    Log.i(TAG, "${viewModel.getCorrectAnswer() } ---  $answer")
+
+                    if ((answer) == viewModel.getCorrectAnswer()){
+                        viewModel.incrementCorrectAnswers()
+                        Log.i(TAG, "${viewModel.getCorrectAnswer()}")
+                    }
+                    viewModel.incrementCounter()
                     Navigation.findNavController(view).navigate(R.id.action_fragment2_to_fragment3)
                 }
             }
@@ -68,6 +101,16 @@ class QuestionFragment : Fragment() {
     private fun initViewItems(view: View){
         nextButton = view.findViewById(R.id.nextButton)
         answerOption = view.findViewById(R.id.radioGroup)
+        radioButton1 = requireView().findViewById(R.id.radioButton)
+        radioButton2 = requireView().findViewById(R.id.radioButton2)
+        radioButton3 = requireView().findViewById(R.id.radioButton3)
+        radioButton4 = requireView().findViewById(R.id.radioButton4)
+        questionText = requireView().findViewById(R.id.questionText)
+        questionText.text = viewModel.getQuestion()
+        radioButton1.text = viewModel.getAnswer1()
+        radioButton2.text = viewModel.getAnswer2()
+        radioButton3.text = viewModel.getAnswer3()
+        radioButton4.text = viewModel.getAnswer4()
     }
 
 

@@ -1,6 +1,8 @@
 package com.example.quizapp
 
+import QuizViewModel
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +10,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 
 
 class QuizStartFragment : Fragment() {
     lateinit var startButton : Button
     lateinit var nameText: EditText
+    private val viewModel: QuizViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,15 +42,20 @@ class QuizStartFragment : Fragment() {
     }
 
     private fun registerListeners(view: View){
-        if(nameText.text.isEmpty()){
-            val toast = Toast.makeText(context, "The text field is empty",Toast.LENGTH_SHORT)
-            toast.show()
-        }
-        else {
-            startButton.setOnClickListener {
+
+        startButton.setOnClickListener {
+//            if(nameText.toString()){
+            if(TextUtils.isEmpty(nameText.getText().toString())){
+                val toast = Toast.makeText(activity, "The text field is empty",Toast.LENGTH_SHORT)
+                toast.show()
+            }
+            else {
+                viewModel.setUserName(nameText.text.toString())
+
                 Navigation.findNavController(view).navigate(R.id.action_fragment1_to_fragment2)
             }
         }
+
     }
 
 
