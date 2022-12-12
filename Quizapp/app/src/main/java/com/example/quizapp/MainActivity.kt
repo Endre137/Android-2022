@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
@@ -14,7 +15,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
-    val TAG="NavigationHost"
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -24,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
         val navigationView = findViewById<NavigationView>(R.id.navigationView)
 
-        Log.i(TAG, "alma1")
         topAppBar.setNavigationOnClickListener {
 
             drawerLayout.open()
@@ -59,5 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
+    override fun onBackPressed() {
+        Toast.makeText(this, "Disabled Back Press", Toast.LENGTH_SHORT).show()
+    }
 }
