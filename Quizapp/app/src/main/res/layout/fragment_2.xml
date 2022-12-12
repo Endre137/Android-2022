@@ -17,9 +17,10 @@
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.137"
+        app:layout_constraintVertical_bias="0.139"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -29,85 +30,31 @@
         android:text="@string/next_question"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quiz"
         app:layout_constraintVertical_bias="0.707" />
 
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="496dp"
-        android:layout_height="259dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="195dp"
-        android:layout_marginBottom="312dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints">
-
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="176dp"
-            android:layout_height="wrap_content"
-            android:text="Elso kerdes"
-            app:layout_constraintBottom_toTopOf="@+id/radioButton2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quiz"
-            app:layout_constraintVertical_bias="0.5" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="175dp"
-            android:layout_height="wrap_content"
-            android:text="Masodik kerdes"
-            app:layout_constraintBottom_toTopOf="@+id/radioButton3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioButton"
-            app:layout_constraintVertical_bias="0.5" />
-
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="176dp"
-            android:layout_height="wrap_content"
-            android:text="Harmadik kerddes"
-            app:layout_constraintBottom_toTopOf="@+id/radioButton4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioButton2"
-            app:layout_constraintVertical_bias="0.5" />
-
-        <RadioButton
-            android:id="@+id/radioButton4"
-            android:layout_width="176dp"
-            android:layout_height="wrap_content"
-            android:text="Negyedik kerdes"
-            app:layout_constraintBottom_toTopOf="@+id/nextButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioButton3"
-            app:layout_constraintVertical_bias="0.5" />
-
-    </RadioGroup>
 
     <TextView
         android:id="@+id/questionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quiz"
         app:layout_constraintVertical_bias="0.5" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="228dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

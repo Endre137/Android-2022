@@ -2,6 +2,7 @@ package com.example.quizapp
 
 import QuizViewModel
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,13 +15,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 
 class QuizEndFragment : Fragment() {
+    val TAG="QuizEndFragment"
     lateinit var nameText: TextView
     lateinit var result: TextView
     private val viewModel: QuizViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Log.i(TAG, "${viewModel.getScore()}")
     }
 
     override fun onCreateView(
@@ -36,7 +38,7 @@ class QuizEndFragment : Fragment() {
 
 
         result = view.findViewById(R.id.result)
-        result.text = viewModel.getCorrectAnswer().toString()
+        result.text = "${viewModel.getScore()}/${viewModel.getQuestionCounter()-1}"
 
 
         val button: Button = view.findViewById(R.id.finishButton)

@@ -3,6 +3,7 @@ package com.example.quizapp
 import QuizViewModel
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,18 +12,22 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+
 
 
 class QuizStartFragment : Fragment() {
+    val TAG="NavigationHost"
+
     lateinit var startButton : Button
     lateinit var nameText: EditText
+
     private val viewModel: QuizViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Log.i(TAG, "alma2")
     }
 
     override fun onCreateView(
@@ -39,9 +44,11 @@ class QuizStartFragment : Fragment() {
             initViewItems(this)
             registerListeners(view)
         }
+        val navController = findNavController()
     }
 
     private fun registerListeners(view: View){
+
 
         startButton.setOnClickListener {
 //            if(nameText.toString()){
@@ -57,6 +64,7 @@ class QuizStartFragment : Fragment() {
         }
 
     }
+
 
 
     private fun initViewItems(view: View){

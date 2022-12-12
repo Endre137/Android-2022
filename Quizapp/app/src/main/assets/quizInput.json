@@ -1,0 +1,44 @@
+[
+  {
+    "question": "What does a data class not offer?",
+    "correct": "2",
+    "answers": [
+      "An auto-generated toString() method",
+      "Automatic conversion from/to JSON",
+      "A generated copy(...) method, to create copies of instances",
+      "Auto-generated hashCode() and equals() methods"
+    ]
+  },
+  {
+    "question": "Which of these targets does Kotlin currently not support?",
+    "correct": "3",
+    "answers": [
+      "LLVM",
+      "JavaScript",
+      ".NET CLR",
+      "JVM"
+    ]
+  },
+
+  {
+    "question": "What are Kotlin coroutines?",
+    "correct": "4",
+    "answers": [
+      "It's Kotlin's term for class methods",
+      "That's how the automatically generated methods hashCode() and equals() in data classes are called",
+      "These are functions which accept other functions as arguments or return them",
+      "They provide asynchronous code without thread blocking"
+    ]
+  },
+
+  {
+    "question": "What is to in the exemple: val test = 33 to 42",
+    "correct": "1",
+    "answers": [
+      "An infix extension function creating a Pair(33,42)",
+      "A Kotlin keyword to create a Pair(33,42)",
+      "A syntax error",
+      "A Kotlin keyword to create a Range from 33 to 42"
+    ]
+  }
+]
