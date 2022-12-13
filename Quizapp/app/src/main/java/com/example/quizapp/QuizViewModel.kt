@@ -21,7 +21,7 @@ data class QuizState(
      val answer3 : String? = null,
      val answer4 : String? = null,
      val correctAnswers : Int = 0,
-
+     val highestScore : Int = 0
 )
 val list = mutableListOf<Item>()
 
@@ -168,5 +168,19 @@ class QuizViewModel : ViewModel()  {
           return uiState.value.counter
      }
 
+     fun getHighestScore():Int{
+          return uiState.value.highestScore
+     }
 
+     fun updateHighestScore(x : Int){
+          _uiState.update { currentState->
+               currentState.copy(
+                    highestScore = x
+               )
+          }
+     }
+
+//     fun random(){
+//          list.shuffle()
+//     }
 }

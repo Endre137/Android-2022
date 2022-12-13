@@ -10,4 +10,6 @@
     <string name="name">Name</string>
     <string name="next_question">NEXT QUESTION</string>
     <string name="black">Black</string>
+    <string name="player_name">Player name:</string>
+    <string name="high_score">High score:</string>
 </resources>
