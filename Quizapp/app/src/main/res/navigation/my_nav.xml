@@ -52,4 +52,9 @@
         android:name="com.example.quizapp.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/listOfQuestions"
+        android:name="com.example.quizapp.ListOfQuestions"
+        android:label="fragment_list_of_questions"
+        tools:layout="@layout/fragment_list_of_questions" />
 </navigation>

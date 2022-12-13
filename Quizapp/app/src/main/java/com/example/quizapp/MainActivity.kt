@@ -45,11 +45,11 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.list -> {
-                    //Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.questionListFragment)
+                    Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.listOfQuestions)
                 }
-                R.id.add -> {
-                    //Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.questionAddFragment)
-                }
+//                R.id.add -> {
+//                    //Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.questionAddFragment)
+//                }
                 else -> super.onOptionsItemSelected(menuItem)
 
             }

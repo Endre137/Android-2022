@@ -22,9 +22,5 @@
 
             android:title="List of questions" />
 
-        <item
-            android:id="@+id/add"
-
-            android:title="New question" />
     </group>
 </menu>

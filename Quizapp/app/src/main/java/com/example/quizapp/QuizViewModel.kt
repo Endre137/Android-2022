@@ -180,6 +180,13 @@ class QuizViewModel : ViewModel()  {
           }
      }
 
+     fun getQuestion2(x : Int): String{
+          return list[x].question
+     }
+
+     fun getquestionsNumber():Int{
+          return list.size
+     }
 //     fun random(){
 //          list.shuffle()
 //     }
