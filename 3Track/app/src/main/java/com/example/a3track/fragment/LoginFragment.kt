@@ -6,18 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.lifecycle.ViewModelProvider
 import com.example.a3track.R
-
-
+import com.example.a3track.repository.TrackerRepository
+import com.example.a3track.viewmodel.LoginViewModel
 
 
 class LoginFragment : Fragment() {
 
+    private lateinit var loginViewModel: LoginViewModel
     private lateinit var editText1: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val factory = LoginViewModelFactory(TrackerRepository())
+        loginViewModel = ViewModelProvider(this, factory).get(LoginViewModel::class.java)
     }
 
     override fun onCreateView(
