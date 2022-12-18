@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.a3track.R
 import com.example.a3track.repository.TrackerRepository
 import com.example.a3track.viewmodel.LoginViewModel
+import com.example.a3track.viewmodel.LoginViewModelFactory
 
 
 class LoginFragment : Fragment() {

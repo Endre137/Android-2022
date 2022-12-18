@@ -1,5 +1,7 @@
 package com.example.a3track.api
 
+import com.example.a3track.model.LoginRequest
+import com.example.a3track.model.LoginResponse
 import com.example.a3track.model.User
 import com.example.a3track.util.Constants
 import retrofit2.Response
