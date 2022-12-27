@@ -4,10 +4,14 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.example.a3track.MyApplication
 import com.example.a3track.model.LoginRequest
 import com.example.a3track.model.LoginResult
 import com.example.a3track.repository.TrackerRepository
+
+import kotlinx.coroutines.launch
+
 
 class LoginViewModelFactory(
     private val repository: TrackerRepository
@@ -20,7 +24,7 @@ class LoginViewModel(val repository: TrackerRepository): ViewModel() {
 
     var loginResult: MutableLiveData<LoginResult> = MutableLiveData()
 
-    fun login(request: LoginRequest) {
+    fun login(request: LoginRequest.LoginRequest) {
         viewModelScope.launch {
             try {
                 val response = repository.login(request)
