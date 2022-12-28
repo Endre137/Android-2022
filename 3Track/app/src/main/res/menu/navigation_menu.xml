@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+    android:id="@+id/activities"
+    android:icon="@drawable/activities"
+    android:title="Activities"  />
+
+    <item
+        android:id="@+id/myTasks"
+        android:icon="@drawable/my_tasks"
+        android:title="My Tasks"  />
+
+    <item
+        android:id="@+id/myGroup"
+        android:icon="@drawable/my_groups"
+        android:title="My Groups"  />
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/profile"
+        android:title="Profile"  />
+</menu>

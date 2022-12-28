@@ -1,6 +1,7 @@
 package com.example.a3track.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.a3track.MyApplication
 import com.example.a3track.R
+import com.example.a3track.TrackerActivity
 import com.example.a3track.model.LoginRequest
 
 import com.example.a3track.model.LoginResult

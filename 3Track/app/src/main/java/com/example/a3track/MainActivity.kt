@@ -1,11 +1,13 @@
 package com.example.a3track
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.navigation.findNavController
 import com.example.a3track.util.Constants
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,13 +22,20 @@ class MainActivity : AppCompatActivity() {
 
         Log.i("xxx", "token: " + token)
         // @TODO - check the token's validity
+        var isValid : Boolean
 
-        val isValid = true
+        if(Date().time < deadline){
+            isValid = true;
+        }else{
+            isValid = false
+            controller.navigate(R.id.loginFragment)
+        }
+
         if (!token.equals("") && isValid ) {
             MyApplication.token = token!!
             MyApplication.email = prefs.getString("email","")!!
 
-            controller.navigate(R.id.userListFragment)
+            startActivity(Intent(this,TrackerActivity::class.java))
         }
 
     }
