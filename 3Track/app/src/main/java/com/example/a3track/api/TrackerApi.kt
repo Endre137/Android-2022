@@ -3,6 +3,7 @@ package com.example.a3track.api
 
 import com.example.a3track.model.LoginRequest
 import com.example.a3track.model.LoginResponse
+import com.example.a3track.model.Task
 import com.example.a3track.model.User
 import com.example.a3track.util.Constants
 import retrofit2.Response
@@ -17,4 +18,7 @@ interface TrackerApi {
 
     @GET(Constants.GET_USERS_URL)
     suspend fun getUsers(@Header("token") token: String): Response<List<User>>
+
+    @GET(Constants.GET_TASKS_URL)
+    suspend fun getTasks(@Header("token") token: String): Response<List<Task>>
 }

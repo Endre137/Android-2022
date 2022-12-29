@@ -24,6 +24,7 @@ class UserListViewModel(val repository: TrackerRepository) : ViewModel() {
     var userList = MutableLiveData<List<User>>()
 
     fun readUsers() {
+//        Log.i("alma", userList.value.toString())
         viewModelScope.launch {
             try {
                 val response = repository.getUsers(MyApplication.token)
