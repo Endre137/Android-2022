@@ -1,18 +1,25 @@
 package com.example.a3track
 
-import android.content.Context
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.view.WindowManager
 import androidx.navigation.findNavController
-import com.example.a3track.util.Constants
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        window.setFlags(                                                    //make the splash screen as a full screen activity
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
 
         val controller = findNavController(R.id.nav_host_fragment)
 
@@ -24,19 +31,24 @@ class MainActivity : AppCompatActivity() {
         // @TODO - check the token's validity
         var isValid : Boolean
 
+
         if(Date().time < deadline){
             isValid = true;
         }else{
             isValid = false
-            controller.navigate(R.id.loginFragment)
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                controller.navigate(R.id.loginFragment)
+            }, 3000)
         }
 
         if (!token.equals("") && isValid ) {
             MyApplication.token = token!!
             MyApplication.email = prefs.getString("email","")!!
 
+            Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this,TrackerActivity::class.java))
+            }, 3000)
         }
-
     }
 }

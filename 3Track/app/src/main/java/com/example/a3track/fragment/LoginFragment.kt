@@ -84,7 +84,9 @@ class LoginFragment : Fragment() {
                 edit.putLong("deadline", MyApplication.deadline)
                 edit.putString("email", editText1.text.toString())
                 edit.apply()
-                findNavController().navigate(R.id.action_loginFragment_to_userListFragment)
+
+                val intent = Intent (getActivity(), TrackerActivity::class.java)
+                getActivity()?.startActivity(intent)
             }
         }
 

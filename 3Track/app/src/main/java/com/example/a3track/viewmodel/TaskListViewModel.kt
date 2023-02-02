@@ -26,6 +26,7 @@ class TaskListViewModel(val repository: TrackerRepository) : ViewModel() {
     fun readTasks(){
         viewModelScope.launch {
             try{
+                Log.i("yyy", "alma")
                 val response = repository.getTasks(MyApplication.token)
                 if(response.isSuccessful){
                     taskList.value = response.body()

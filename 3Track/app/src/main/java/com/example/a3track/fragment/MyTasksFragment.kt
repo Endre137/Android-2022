@@ -23,6 +23,7 @@ class MyTasksFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val factory = TaskListViewModelFactory(TrackerRepository())
+        Log.i("taskfragment", "megy");
         taskListViewModel = ViewModelProvider(this, factory).get(TaskListViewModel::class.java)
 
     }
@@ -32,6 +33,7 @@ class MyTasksFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_my_tasks, container, false)
 
     }
