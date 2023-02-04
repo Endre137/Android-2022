@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view_tasks"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="#032264F4"
-    app:cardCornerRadius="12dp">
+    app:cardBackgroundColor="#1A2264F4"
+    app:cardCornerRadius="6dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,7 +48,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/assignedTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="92dp"
@@ -56,15 +57,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="79dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/bluefader" />
 
         <TextView
             android:id="@+id/assigneeText"
@@ -117,7 +109,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/highPrioIcon"
             android:layout_width="32dp"
             android:layout_height="26dp"
             android:layout_marginTop="132dp"
@@ -126,8 +118,31 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/highprioicon" />
 
+        <ImageView
+            android:id="@+id/mediumPrioIcon"
+            android:layout_width="32dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="132dp"
+            android:layout_marginEnd="15dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/mediumprioicon" />
+
+
+        <ImageView
+            android:id="@+id/lowPrioIcon"
+            android:layout_width="32dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="132dp"
+            android:layout_marginEnd="15dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/lowprioicon" />
+
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/descriptionText"
             android:layout_width="363dp"
             android:layout_height="93dp"
             android:layout_marginStart="4dp"
@@ -159,6 +174,121 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/newTaskStatus"
+            android:layout_width="81dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="15dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/newtaskback" />
+
+        <TextView
+            android:id="@+id/newTaskStatusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/newTaskStatus"
+            app:layout_constraintEnd_toEndOf="@+id/newTaskStatus"
+            app:layout_constraintStart_toStartOf="@+id/newTaskStatus"
+            app:layout_constraintTop_toTopOf="@+id/newTaskStatus"
+            tools:layout_editor_absoluteX="299dp"
+            tools:layout_editor_absoluteY="72dp" />
+
+
+        <ImageView
+            android:id="@+id/inProgressTaskStatus"
+            android:layout_width="120dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="15dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/inprogressback" />
+
+
+        <TextView
+            android:id="@+id/inProgressTaskStatusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="In Progress"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/inProgressTaskStatus"
+            app:layout_constraintEnd_toEndOf="@+id/inProgressTaskStatus"
+            app:layout_constraintStart_toStartOf="@+id/inProgressTaskStatus"
+            app:layout_constraintTop_toTopOf="@+id/inProgressTaskStatus"
+            tools:layout_editor_absoluteX="299dp"
+            tools:layout_editor_absoluteY="72dp" />
+
+        <ImageView
+            android:id="@+id/doneStatus"
+            android:layout_width="55dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="73dp"
+            android:layout_marginEnd="5dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/doneicon" />
+
+        <TextView
+            android:id="@+id/doneStatusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="Done"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/doneStatus"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/blockedStatus"
+            android:layout_width="98dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginEnd="15dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/blockedback" />
+
+        <TextView
+            android:id="@+id/blockedStatusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blocked"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/blockedStatus"
+            app:layout_constraintEnd_toEndOf="@+id/blockedStatus"
+            app:layout_constraintStart_toStartOf="@+id/blockedStatus"
+            app:layout_constraintTop_toTopOf="@+id/blockedStatus"
+            tools:layout_editor_absoluteX="299dp"
+            tools:layout_editor_absoluteY="72dp" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/highPrioIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/assigneeName"
+            app:layout_constraintVertical_bias="0.5"
+            app:srcCompat="@drawable/line" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

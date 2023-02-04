@@ -20,5 +20,5 @@ interface TrackerApi {
     suspend fun getUsers(@Header("token") token: String): Response<List<User>>
 
     @GET(Constants.GET_TASKS_URL)
-    suspend fun getTasks(@Header("token") token: String): Response<List<Task>>
+    suspend fun getTasks(@Header("token") token: String): Response<MutableList<Task>>
 }

@@ -17,7 +17,7 @@ class TrackerRepository {
         return RetrofitInstance.api.getUsers(token)
     }
 
-    suspend fun getTasks(token: String) : Response<List<Task>> {
+    suspend fun getTasks(token: String) : Response<MutableList<Task>> {
         return RetrofitInstance.api.getTasks(token)
     }
 }

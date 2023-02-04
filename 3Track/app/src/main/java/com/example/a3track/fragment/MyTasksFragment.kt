@@ -6,25 +6,31 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.a3track.R
 import com.example.a3track.repository.TrackerRepository
+import com.example.a3track.tasks.TaskAdapter
 import com.example.a3track.viewmodel.TaskListViewModel
 import com.example.a3track.viewmodel.TaskListViewModelFactory
 
 
 class MyTasksFragment : Fragment() {
     private lateinit var taskListViewModel: TaskListViewModel
+    private var layoutManager: RecyclerView.LayoutManager? = null
+    private var adapter: RecyclerView.Adapter<TaskAdapter.ViewHolder>? = null
+    lateinit var recyclerView : RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factory = TaskListViewModelFactory(TrackerRepository())
-        Log.i("taskfragment", "megy");
+         val factory = TaskListViewModelFactory(TrackerRepository())
+
         taskListViewModel = ViewModelProvider(this, factory).get(TaskListViewModel::class.java)
+
+
+
+
 
     }
 
@@ -32,19 +38,37 @@ class MyTasksFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        taskListViewModel.readTasks()
         // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_my_tasks, container, false)
+        taskListViewModel.readTasks()
+        Log.i("taskfragment1", taskListViewModel.getTasks().toString());
+        recyclerView =view.findViewById<RecyclerView>(R.id.recycleViewTasks)
+        layoutManager = LinearLayoutManager(activity)
+        recyclerView.layoutManager = layoutManager
 
-        return inflater.inflate(R.layout.fragment_my_tasks, container, false)
+        adapter = TaskAdapter(taskListViewModel.getTasks())
+
+        recyclerView.adapter = adapter
+
+        Log.i("taskfragment2", taskListViewModel.getTasks().toString());
+        return view
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        taskListViewModel.readTasks()
-        taskListViewModel.taskList.observe(viewLifecycleOwner){
-            val taskList = taskListViewModel.taskList.value
-            Log.i("yyy-task", taskList.toString())
-        }
-    }
 
+//        recyclerView = view.findViewById(R.id.recycleViewTasks)
+//        initViewItems()
+
+
+//        taskListViewModel.taskList.observe(viewLifecycleOwner){
+//            val taskList = taskListViewModel.taskList.value
+//            Log.i("yyy-task", taskList?.get(0)?.title.toString())
+//
+//
+//        }
+
+    }
 }

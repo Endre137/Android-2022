@@ -10,5 +10,6 @@ data class Task(
     var priority: Int,
     var deadline: Long,
     var department_ID: Int,
-    var status: Int
+    var status: Int,
+    var progress: Int
 )
