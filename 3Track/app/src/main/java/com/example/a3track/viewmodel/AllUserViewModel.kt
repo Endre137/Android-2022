@@ -29,7 +29,7 @@ class AllUserViewModel():ViewModel() {
     fun getAllUsers(token: String) {
         viewModelScope.launch {
             try {
-                val response = repository.getUsers(MyApplication.token)
+                val response = repository.getUsers(token)
                 if (response.isSuccessful) {
                     val responses = response.body().toString().trim().split("),")
                     for (i in responses) {

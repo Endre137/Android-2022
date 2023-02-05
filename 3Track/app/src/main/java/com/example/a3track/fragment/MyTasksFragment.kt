@@ -7,18 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.a3track.MyApplication
 import com.example.a3track.R
-import com.example.a3track.repository.TrackerRepository
 import com.example.a3track.tasks.TaskAdapter
+import com.example.a3track.viewmodel.AllUserViewModel
 import com.example.a3track.viewmodel.TaskListViewModel
-import com.example.a3track.viewmodel.TaskListViewModelFactory
 
 
 class MyTasksFragment : Fragment() {
     private val taskListViewModel: TaskListViewModel by activityViewModels()
+    private  val allUserViewModel: AllUserViewModel by activityViewModels()
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var adapter: RecyclerView.Adapter<TaskAdapter.ViewHolder>? = null
     lateinit var recyclerView : RecyclerView
@@ -28,7 +28,7 @@ class MyTasksFragment : Fragment() {
 //         val factory = TaskListViewModelFactory(TrackerRepository())
 
         //taskListViewModel = ViewModelProvider(this, factory).get(TaskListViewModel::class.java)
-
+        allUserViewModel.getAllUsers(MyApplication.token)
 
 
 
@@ -55,7 +55,11 @@ class MyTasksFragment : Fragment() {
         layoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
 
-        adapter = TaskAdapter(taskListViewModel.getTasks())
+        adapter = TaskAdapter(taskListViewModel.getTasks(),object : TaskAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int,taskId : Int) {
+                replaceFragment(TaskDetailsFragment(taskId))
+            }
+        })
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
         Log.i("taskfragment2", taskListViewModel.getTasks().toString());
@@ -70,5 +74,11 @@ class MyTasksFragment : Fragment() {
 //
 //        }
 
+    }
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentManager = requireFragmentManager()
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.container,fragment)
+        fragmentTransaction.commit()
     }
 }

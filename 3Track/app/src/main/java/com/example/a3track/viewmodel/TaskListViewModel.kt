@@ -31,6 +31,15 @@ class TaskListViewModel() : ViewModel() {
         return _uistate.value!!.tasks
     }
 
+    fun getTaskById(id: Int):Task?{
+        for (t in _uistate.value!!.tasks){
+            if(t!!.ID == id.toLong()){
+                return t
+            }
+        }
+        return null
+    }
+
     fun readTasks(){
         viewModelScope.launch {
             try{

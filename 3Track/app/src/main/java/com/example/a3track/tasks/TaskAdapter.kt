@@ -12,7 +12,8 @@ import com.example.a3track.R
 import com.example.a3track.model.Task
 import java.text.SimpleDateFormat
 
-class TaskAdapter(private val tasksList:MutableList<Task>): RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
+@Suppress("DEPRECATION")
+class TaskAdapter(private val tasksList:MutableList<Task>, private val listener:  OnItemClickListener): RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
     private val task1: Task = Task(679,"Elso feladat", "Lorem ipsum dolor sit amet consectetur adipis", 1675522301375, 9, 9, 2,1625942327,2, 1, 1)
 
   private val TasksList:MutableList<Task> = mutableListOf(task1)
@@ -22,10 +23,10 @@ class TaskAdapter(private val tasksList:MutableList<Task>): RecyclerView.Adapter
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskAdapter.ViewHolder{
-        val v  = LayoutInflater.from(parent.context).inflate(R.layout.task_cards, parent, false)
+        val itemView  = LayoutInflater.from(parent.context).inflate(R.layout.task_cards, parent, false)
         Log.i("taskSize", tasksList.size.toString())
         Log.i("task1", tasksList.toString())
-        return ViewHolder(v)
+        return ViewHolder(itemView)
     }
 
 
@@ -121,9 +122,12 @@ class TaskAdapter(private val tasksList:MutableList<Task>): RecyclerView.Adapter
         holder.percentDone.text = "${currentItem.progress}% Done"
 
     }
+    interface OnItemClickListener {
+        fun onItemClick(position: Int,taskId: Int)
+    }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val taskTitle : TextView = itemView.findViewById(R.id.taskTitle)
+        val taskTitle : TextView = itemView.findViewById(R.id.taskTitleDet)
         val groupName : TextView = itemView.findViewById(R.id.groupName)
         val assignedBy : TextView = itemView.findViewById(R.id.assignedBy)
         val assignedTime : TextView = itemView.findViewById(R.id.assignedTime)
@@ -145,8 +149,16 @@ class TaskAdapter(private val tasksList:MutableList<Task>): RecyclerView.Adapter
         val blockedStatus : ImageView = itemView.findViewById(R.id.blockedStatus)
         val blockedStatusText : TextView = itemView.findViewById(R.id.blockedStatusText)
 
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(position,tasksList[position].ID.toInt())
+                }
+            }
+        }
 
     }
 
-    
+
 }
