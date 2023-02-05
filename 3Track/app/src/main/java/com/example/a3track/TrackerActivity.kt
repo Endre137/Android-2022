@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.example.a3track.fragment.MyProfileFragment
 import com.example.a3track.fragment.MyTasksFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -22,6 +23,10 @@ class TrackerActivity : AppCompatActivity() {
 //                }
                 R.id.myTasks -> {
                     loadFragment(MyTasksFragment())
+                    true
+                }
+                R.id.profile ->{
+                    loadFragment(MyProfileFragment())
                     true
                 }
                 else ->{

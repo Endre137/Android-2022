@@ -5,4 +5,5 @@ object Constants {
     const val LOGIN_URL ="/login"
     const val GET_USERS_URL ="/users"
     const val GET_TASKS_URL = "/task/getTasks"
+    const val GET_CURRENT_USER_URL = "/user"
 }

@@ -1,10 +1,8 @@
 package com.example.a3track.repository
 
+import com.example.a3track.MyApplication.Companion.token
 import com.example.a3track.api.RetrofitInstance
-import com.example.a3track.model.LoginRequest
-import com.example.a3track.model.LoginResponse
-import com.example.a3track.model.Task
-import com.example.a3track.model.User
+import com.example.a3track.model.*
 import retrofit2.Response
 
 
@@ -19,5 +17,9 @@ class TrackerRepository {
 
     suspend fun getTasks(token: String) : Response<MutableList<Task>> {
         return RetrofitInstance.api.getTasks(token)
+    }
+
+    suspend fun getCurrentUser(userRequest: String) : Response<GetCuResponse> {
+        return RetrofitInstance.api.getCurrentUser(token)
     }
 }
