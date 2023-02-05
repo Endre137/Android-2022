@@ -54,8 +54,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewTasks"
-        android:layout_width="405dp"
-        android:layout_height="649dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="82dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

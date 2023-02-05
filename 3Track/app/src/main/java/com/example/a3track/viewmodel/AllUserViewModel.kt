@@ -15,7 +15,7 @@ class AllUserViewModelFactory(
     private val repository: TrackerRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return AllUserViewModel( repository) as T
+        return AllUserViewModel() as T
     }
 }
 data class AllUsers(
@@ -23,9 +23,9 @@ data class AllUsers(
 )
 
 
-class AllUserViewModel(val repository: TrackerRepository):ViewModel() {
+class AllUserViewModel():ViewModel() {
     private val allUsers = MutableLiveData(AllUsers())
-
+    val repository =  TrackerRepository()
     fun getAllUsers(token: String) {
         viewModelScope.launch {
             try {

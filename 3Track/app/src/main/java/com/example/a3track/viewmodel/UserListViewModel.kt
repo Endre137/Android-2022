@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.a3track.MyApplication
 import androidx.lifecycle.viewModelScope
+import com.example.a3track.model.GetCuResponse
 import kotlinx.coroutines.launch
 import com.example.a3track.model.User
 import com.example.a3track.repository.TrackerRepository
@@ -16,13 +17,13 @@ class UserListViewModelFactory(
     private val repository: TrackerRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return UserListViewModel( repository) as T
+        return UserListViewModel( ) as T
     }
 }
 
-class UserListViewModel(val repository: TrackerRepository) : ViewModel() {
-    var userList = MutableLiveData<List<User>>()
-
+class UserListViewModel() : ViewModel() {
+    var userList = MutableLiveData<List<GetCuResponse>>()
+    val repository= TrackerRepository()
     fun readUsers() {
 //        Log.i("alma", userList.value.toString())
         viewModelScope.launch {

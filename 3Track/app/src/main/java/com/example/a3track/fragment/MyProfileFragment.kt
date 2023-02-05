@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import com.example.a3track.MyApplication
@@ -29,16 +30,17 @@ class MyProfileFragment : Fragment() {
     private lateinit var profileEmail: TextView
     private lateinit var telephoneNumber: TextView
     private lateinit var location: TextView
-    private lateinit var currentUserViewModel: UserViewModel
-    private lateinit var allUserViewModel: AllUserViewModel
+    private  val currentUserViewModel: UserViewModel by activityViewModels()
+    private  val allUserViewModel: AllUserViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factoryU = UserViewModelFactory(TrackerRepository())
-        currentUserViewModel = ViewModelProvider(this, factoryU).get(UserViewModel::class.java)
-
-        val factoryA = AllUserViewModelFactory(TrackerRepository())
-        allUserViewModel = ViewModelProvider(this, factoryA).get(AllUserViewModel::class.java)
+//        val factoryU = UserViewModelFactory(TrackerRepository())
+//        currentUserViewModel = ViewModelProvider(this, factoryU).get(UserViewModel::class.java)
+        currentUserViewModel.getCurrentUser()
+        allUserViewModel.getAllUsers(MyApplication.token)
+//        val factoryA = AllUserViewModelFactory(TrackerRepository())
+//        allUserViewModel = ViewModelProvider(this, factoryA).get(AllUserViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -46,29 +48,23 @@ class MyProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        currentUserViewModel.getCurrentUser()
+
         return inflater.inflate(R.layout.fragment_my_profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        allUserViewModel.getAllUsers(MyApplication.token)
-        mentorName = view.findViewById(R.id.mentorName)
-        mentorName.text = allUserViewModel.getUserByDepType(currentUserViewModel.getDepartmentId(),0).toString()
-
-        profileName = view.findViewById(R.id.profileName)
-        profileName.text = currentUserViewModel.getName()
         initViewItems()
-
 //        registerListeners()
     }
 
 
 
     private fun initViewItems(){
-//        val mentorName =requireView().findViewById(R.id.mentorName)
-//        mentorName.text = allUserViewModel.getUserByDepType(currentUserViewModel.getDepartmentId(),0)
+        mentorName = requireView().findViewById(R.id.mentorName)
+        mentorName.text = allUserViewModel.getUserByDepType(currentUserViewModel.getDepartmentId(),0)?.last_name.toString()
 
+        profileName = requireView().findViewById(R.id.profileName)
+        profileName.text = currentUserViewModel.getName()
     }
 }

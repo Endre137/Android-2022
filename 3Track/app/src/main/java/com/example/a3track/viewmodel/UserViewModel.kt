@@ -29,12 +29,12 @@ class UserViewModelFactory(
     private val repository: TrackerRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return UserViewModel( repository) as T
+        return UserViewModel( ) as T
     }
 }
-class UserViewModel(val repository: TrackerRepository):ViewModel(){
+class UserViewModel():ViewModel(){
     private val userData = MutableLiveData(User())
-
+    val repository = TrackerRepository()
     fun getDeadline():Long{
         return userData.value?.loginResponse?.deadline ?: 0
     }
@@ -55,12 +55,11 @@ class UserViewModel(val repository: TrackerRepository):ViewModel(){
 
         viewModelScope.launch {
             try{
-
                 val response = repository.getCurrentUser(MyApplication.token)
                 if(response.isSuccessful){
                     val response = response.body().toString().trim().split(",")
                     val responses : MutableList<String> = mutableListOf()
-                    for(i in responses){
+                    for(i in response){
                         val t = i.split("=")[1]
                         responses.add(t)
                     }

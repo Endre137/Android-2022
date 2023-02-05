@@ -13,7 +13,7 @@ class TaskListViewModelFactory(
     private val repository: TrackerRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return TaskListViewModel( repository) as T
+        return TaskListViewModel() as T
     }
 }
 
@@ -21,11 +21,11 @@ data class AllMyTasks(
     var tasks : MutableList<Task> = mutableListOf()
 )
 
-class TaskListViewModel(val repository: TrackerRepository) : ViewModel() {
+class TaskListViewModel() : ViewModel() {
 //    var taskList = MutableLiveData<MutableList<Task>>()
 //    var tasks : MutableList<Task> = mutableListOf()
-
-    private val _uistate = MutableLiveData(AllMyTasks())
+    val repository= TrackerRepository()
+    private var _uistate = MutableLiveData(AllMyTasks())
 
     fun getTasks():MutableList<Task>{
         return _uistate.value!!.tasks
@@ -34,6 +34,7 @@ class TaskListViewModel(val repository: TrackerRepository) : ViewModel() {
     fun readTasks(){
         viewModelScope.launch {
             try{
+//                _uistate.value!!.tasks= mutableListOf()
                 Log.i("yyy", "alma")
                 val response = repository.getTasks(MyApplication.token)
                 if(response.isSuccessful){

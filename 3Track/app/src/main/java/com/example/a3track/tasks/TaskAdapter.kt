@@ -13,9 +13,9 @@ import com.example.a3track.model.Task
 import java.text.SimpleDateFormat
 
 class TaskAdapter(private val tasksList:MutableList<Task>): RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
-//    private val task1: Task = Task(679,"Elso feladat", "Lorem ipsum dolor sit amet consectetur adipis", 1675522301375, 9, 9, 2,1625942327,2, 1, 1)
+    private val task1: Task = Task(679,"Elso feladat", "Lorem ipsum dolor sit amet consectetur adipis", 1675522301375, 9, 9, 2,1625942327,2, 1, 1)
 
-//    private val TasksList:MutableList<Task> = mutableListOf(task1)
+  private val TasksList:MutableList<Task> = mutableListOf(task1)
 
 
 
@@ -147,4 +147,6 @@ class TaskAdapter(private val tasksList:MutableList<Task>): RecyclerView.Adapter
 
 
     }
+
+    
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,17 +18,16 @@ import com.example.a3track.viewmodel.TaskListViewModelFactory
 
 
 class MyTasksFragment : Fragment() {
-    private lateinit var taskListViewModel: TaskListViewModel
+    private val taskListViewModel: TaskListViewModel by activityViewModels()
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var adapter: RecyclerView.Adapter<TaskAdapter.ViewHolder>? = null
     lateinit var recyclerView : RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         val factory = TaskListViewModelFactory(TrackerRepository())
+//         val factory = TaskListViewModelFactory(TrackerRepository())
 
-        taskListViewModel = ViewModelProvider(this, factory).get(TaskListViewModel::class.java)
-
+        //taskListViewModel = ViewModelProvider(this, factory).get(TaskListViewModel::class.java)
 
 
 
@@ -39,26 +39,26 @@ class MyTasksFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         taskListViewModel.readTasks()
+
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_my_tasks, container, false)
-        taskListViewModel.readTasks()
+
         Log.i("taskfragment1", taskListViewModel.getTasks().toString());
-        recyclerView =view.findViewById<RecyclerView>(R.id.recycleViewTasks)
-        layoutManager = LinearLayoutManager(activity)
-        recyclerView.layoutManager = layoutManager
 
-        adapter = TaskAdapter(taskListViewModel.getTasks())
-
-        recyclerView.adapter = adapter
-
-        Log.i("taskfragment2", taskListViewModel.getTasks().toString());
         return view
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        recyclerView =view.findViewById(R.id.recycleViewTasks)
+        layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = layoutManager
 
+        adapter = TaskAdapter(taskListViewModel.getTasks())
+        recyclerView.setHasFixedSize(true)
+        recyclerView.adapter = adapter
+        Log.i("taskfragment2", taskListViewModel.getTasks().toString());
 //        recyclerView = view.findViewById(R.id.recycleViewTasks)
 //        initViewItems()
 
