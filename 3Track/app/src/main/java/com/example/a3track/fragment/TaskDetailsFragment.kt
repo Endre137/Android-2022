@@ -76,7 +76,10 @@ class TaskDetailsFragment(taskId: Int) : Fragment() {
         progress = requireView().findViewById(R.id.percenDoneDet)
         progress.text = task.progress.toString()
         progressBar = requireView().findViewById(R.id.progressBar2)
-        progressBar.progress = task.progress
+        if(task.progress == null){
+            task.progress=1
+        }
+        progressBar.progress = task.progress!!
         deadline = requireView().findViewById(R.id.deadlineDateDet)
         deadline.text = dateformat2.format(task.deadline)
         priority = requireView().findViewById(R.id.priorityTextDet)

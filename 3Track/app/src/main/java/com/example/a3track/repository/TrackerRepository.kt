@@ -22,4 +22,16 @@ class TrackerRepository {
     suspend fun getCurrentUser(userRequest: String) : Response<GetCuResponse> {
         return RetrofitInstance.api.getCurrentUser(token)
     }
+
+    suspend fun createTask(token:String,createTaskRequest: CreateTaskRequest): Response<String>? {
+        return RetrofitInstance.api.createTask(token = token, createTaskRequest = createTaskRequest)
+    }
+
+    suspend fun getDepartments(token: String) : Response<List<Department>> {
+        return RetrofitInstance.api.getDepartments(token=token)
+    }
+
+    suspend fun updateTask(token: String, updateTaskRequest: UpdateTaskRequest):Response<String>?{
+        return RetrofitInstance.api.updateTask(token = token, updateTaskRequest = updateTaskRequest)
+    }
 }

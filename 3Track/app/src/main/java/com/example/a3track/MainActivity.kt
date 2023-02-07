@@ -23,12 +23,11 @@ class MainActivity : AppCompatActivity() {
 
         val controller = findNavController(R.id.nav_host_fragment)
 
-        val prefs = this.getPreferences(MODE_PRIVATE)
+        val prefs = this.getSharedPreferences("TRACKER",MODE_PRIVATE)
         val token = prefs.getString("token", "")
         val deadline = prefs.getLong("deadline", 0L)
 
         Log.i("xxx", "token: " + token)
-        // @TODO - check the token's validity
         var isValid : Boolean
 
 
@@ -48,6 +47,10 @@ class MainActivity : AppCompatActivity() {
 
             Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this,TrackerActivity::class.java))
+            }, 3000)
+        }else{
+            Handler(Looper.getMainLooper()).postDelayed({
+                controller.navigate(R.id.loginFragment)
             }, 3000)
         }
     }

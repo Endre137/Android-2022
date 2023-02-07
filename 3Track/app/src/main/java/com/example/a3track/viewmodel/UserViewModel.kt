@@ -39,6 +39,22 @@ class UserViewModel():ViewModel(){
         return userData.value?.loginResponse?.deadline ?: 0
     }
 
+    fun getImageUrl():String{
+        return userData.value!!.imageUrl
+    }
+
+    fun getTelephoneNumber():String? {
+        return userData.value!!.phone_number
+    }
+
+    fun getMentorId():Int{
+        return  userData.value!!.mentor!!.ID
+    }
+
+    fun getEmail():String{
+        return  userData.value!!.email
+    }
+
     fun getToken():String{
         return userData.value?.loginResponse?.token ?: ""
     }
@@ -89,4 +105,6 @@ class UserViewModel():ViewModel(){
         }
         return responseCorrect
     }
+
+
 }

@@ -49,7 +49,7 @@ class LoginFragment : Fragment() {
         val editText2: EditText = view.findViewById(R.id.edittext_password_login_fragment)
         val button: Button = view.findViewById(R.id.button_login_fragment)
 
-        val prefs = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        val prefs = requireActivity().getSharedPreferences("TRACKER",Context.MODE_PRIVATE)
         if (!prefs.getString("email", "").equals("")) {
             editText1.setText(prefs.getString("email", ""))
         }
@@ -78,7 +78,7 @@ class LoginFragment : Fragment() {
                 ).show()
             }
             if ( it == LoginResult.SUCCESS ) {
-                val prefs = requireActivity().getPreferences(Context.MODE_PRIVATE)
+                val prefs = requireActivity().getSharedPreferences("TRACKER",Context.MODE_PRIVATE)
                 val edit = prefs.edit()
                 edit.putString("token", MyApplication.token)
                 edit.putLong("deadline", MyApplication.deadline)

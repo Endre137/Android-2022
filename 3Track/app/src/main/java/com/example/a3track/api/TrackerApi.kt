@@ -21,4 +21,13 @@ interface TrackerApi {
 
     @GET(Constants.GET_CURRENT_USER_URL)
     suspend fun getCurrentUser(@Header("token") token: String): Response<GetCuResponse>
+
+    @POST(Constants.CREATE_TASK)
+    suspend fun createTask(@Header("token") token: String,@Body createTaskRequest: CreateTaskRequest) : Response<String>
+
+    @POST(Constants.UPDATE_TASK)
+    suspend fun updateTask(@Header("token") token: String,@Body updateTaskRequest: UpdateTaskRequest) : Response<String>
+
+    @GET(Constants.GET_DEPARTMENT_URL)
+    suspend fun getDepartments(@Header("token") token: String): Response<List<Department>>
 }

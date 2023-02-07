@@ -10,13 +10,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a3track.R
 import com.example.a3track.model.Task
+import com.example.a3track.viewmodel.AllUserViewModel
+import com.example.a3track.viewmodel.DepartmentViewModel
 import java.text.SimpleDateFormat
 
 @Suppress("DEPRECATION")
-class TaskAdapter(private val tasksList:MutableList<Task>, private val listener:  OnItemClickListener): RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
-    private val task1: Task = Task(679,"Elso feladat", "Lorem ipsum dolor sit amet consectetur adipis", 1675522301375, 9, 9, 2,1625942327,2, 1, 1)
+class TaskAdapter(private val tasksList:MutableList<Task>, private val listener:  OnItemClickListener, private val departmentVM: DepartmentViewModel, private val userViewModel: AllUserViewModel): RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
+    //private val task1: Task = Task(679,"Elso feladat", "Lorem ipsum dolor sit amet consectetur adipis", 1675522301375, 9, 9, 2,1625942327,2, 1, 1)
 
-  private val TasksList:MutableList<Task> = mutableListOf(task1)
+  //private val TasksList:MutableList<Task> = mutableListOf(task1)
 
 
 
@@ -38,11 +40,11 @@ class TaskAdapter(private val tasksList:MutableList<Task>, private val listener:
         val currentItem = tasksList[position]
         val dateformat2 = SimpleDateFormat("MMMM dd yyyy")
         holder.taskTitle.text = currentItem.title
-        holder.groupName.text = "csoportnev*"
-        holder.assignedTime.text = "Alma"
-//        holder.assignedTime.text = currentItem.created_time.toString().substring(11,16)
-        holder.assigneeName.text = currentItem.asigned_to_user_ID.toString()
-        holder.assignedBy.text = currentItem.created_by_user_ID.toString()
+        holder.groupName.text = departmentVM.getDepartmentNameById(userViewModel.getDepartmentId(currentItem.asigned_to_user_ID.toInt()))
+        holder.assignedTime.text = dateformat2.format(currentItem.created_time)
+
+        holder.assigneeName.text = userViewModel.getName(currentItem.asigned_to_user_ID.toInt())
+        holder.assignedBy.text = userViewModel.getName(currentItem.created_by_user_ID.toInt())
         holder.deadlineDate.text = dateformat2.format(currentItem.deadline)
 
         when(currentItem.status){
@@ -80,6 +82,7 @@ class TaskAdapter(private val tasksList:MutableList<Task>, private val listener:
             }
 
             3 ->{
+
                 holder.newTaskStatus.visibility = View.GONE
                 holder.newTaskStatusText.visibility = View.GONE
                 holder.doneStatus.visibility = View.GONE
@@ -118,8 +121,11 @@ class TaskAdapter(private val tasksList:MutableList<Task>, private val listener:
             tempText = tempText.substring(0,75)
         }
         holder.descriptionText.text = tempText
-        holder.progressBar.progress = currentItem.progress
-        holder.percentDone.text = "${currentItem.progress}% Done"
+        if(currentItem.progress == null){
+            currentItem.progress = 1
+        }
+        holder.progressBar?.progress = currentItem.progress!!
+        holder.percentDone.text = "${currentItem?.progress}% Done"
 
     }
     interface OnItemClickListener {
@@ -139,7 +145,7 @@ class TaskAdapter(private val tasksList:MutableList<Task>, private val listener:
         val lowPrioIcon : ImageView = itemView.findViewById(R.id.lowPrioIcon)
         val descriptionText : TextView = itemView.findViewById(R.id.descriptionText)
         val percentDone : TextView = itemView.findViewById(R.id.percentDoneText)
-        val progressBar : ProgressBar = itemView.findViewById(R.id.progressBar)
+        val progressBar : ProgressBar? = itemView.findViewById(R.id.progressBar)
         val newTaskStatus : ImageView = itemView.findViewById(R.id.newTaskStatus)
         val newTaskStatusText : TextView = itemView.findViewById(R.id.newTaskStatusText)
         val inProgressTaskStatus : ImageView = itemView.findViewById(R.id.inProgressTaskStatus)

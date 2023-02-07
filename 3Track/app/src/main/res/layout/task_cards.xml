@@ -70,7 +70,7 @@
 
         <TextView
             android:id="@+id/assigneeName"
-            android:layout_width="60dp"
+            android:layout_width="wrap_content"
             android:layout_height="22dp"
             android:layout_marginStart="92dp"
             android:layout_marginTop="84dp"

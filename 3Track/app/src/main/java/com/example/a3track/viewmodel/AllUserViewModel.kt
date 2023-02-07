@@ -76,6 +76,15 @@ class AllUserViewModel():ViewModel() {
                 return null
             }
 
+            fun getDepartmentId(id : Int):Int{
+                for(i in allUsers.value!!.users){
+                    if(i.ID == id){
+                        return i.department_id
+                    }
+                }
+                return -1
+            }
+
 
             fun getImage(id: Int):String?{
                 for(i in allUsers.value!!.users){
@@ -94,5 +103,31 @@ class AllUserViewModel():ViewModel() {
             }
             return null
         }
+
+    fun getAllUserArray(): MutableList<String> {
+        var assignees:MutableList<String> = mutableListOf()
+        for(i in allUsers.value!!.users){
+            assignees.add(i.first_name + " " + i.last_name)
+        }
+        return assignees
+    }
+
+    fun getIdByName(lastName:String, firstName:String):Int{
+        for(i in allUsers.value!!.users){
+            if(i.first_name == firstName && i.last_name == lastName){
+                return i.ID
+            }
+        }
+        return 0
+    }
+
+    fun getImageById(id: Int):String?{
+        for(i in allUsers.value!!.users){
+            if(i.ID == id){
+                return i.image
+            }
+        }
+        return null
+    }
 }
 
